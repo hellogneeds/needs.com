@@ -798,7 +798,7 @@
     // This tells the script to WAIT until the entire website is drawn on the screen
     document.addEventListener("DOMContentLoaded", function() {
         
-        const baseLegacyInquiries = 2500;
+        const baseLegacyInquiries = 2560;
         const namespace = 'needsengineering'; 
         const key = 'homepage';
         const countDisplay = document.getElementById('visitor-count');
@@ -809,7 +809,7 @@
         }
 
         // Try to fetch the live data
-        fetch(`https://api.counterapi.dev/v1/${namespace}/${key}/up`)
+        fetch(`https://api.counterapi.dev/v2/hellogneedss-team-3892/needsplcom/up`)
             .then(response => {
                 if (!response.ok) throw new Error("API connection failed");
                 return response.json();
