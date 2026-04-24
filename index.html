@@ -777,7 +777,7 @@
                 <div class="flex items-center justify-center space-x-6">
                     <div id="visitor-count" class="text-4xl md:text-5xl font-bold text-orange-500" 
                          style="font-family: 'Bookman Old Style', serif;">
-                        2,500
+                        2,700
                     </div>
                     
                     <div class="text-left border-l-2 border-orange-500 pl-4">
@@ -813,7 +813,7 @@
         </div>
             <div class="visitor-counter">
             <span class="counter-label">Total Visitors:</span>
-             <span id="v-count">0000</span>
+             <span id="v-count">2700</span>
           </div>
     </footer>
 <script>
@@ -832,7 +832,7 @@
 
       // Initialize the counter with your namespace
              const counter = new Counter({
-                 namespace: 'hellogneeds' 
+                 namespace: 'needspl.com' 
            });
 
          // Increment the counter
@@ -854,6 +854,7 @@
         <script>
 document.addEventListener("DOMContentLoaded", function() {
     const counterElement = document.getElementById('v-count');
+    const startingOffset = 2700;
 
     // Fetch the count from CounterAPI
     fetch('https://api.counterapi.dev/v2/hellogneedss-team-3892/needsplcom/up')
