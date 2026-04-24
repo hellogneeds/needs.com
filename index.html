@@ -244,6 +244,34 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
         }
+</style>
+
+        <style>
+    .status-pulse-fixed {
+        display: inline-block;
+        width: 8px; height: 8px;
+        background-color: #f97316;
+        border-radius: 50%;
+        margin-right: 8px;
+        position: relative;
+    }
+    .status-pulse-fixed::after {
+        content: '';
+        position: absolute;
+        width: 100%; height: 100%;
+        background-color: #f97316;
+        border-radius: 50%;
+        animation: pulse-ring 1.5s infinite;
+        opacity: 0.7;
+    }
+    @keyframes pulse-ring {
+        0% { transform: scale(1); opacity: 0.7; }
+        100% { transform: scale(3); opacity: 0; }
+    }
+    .status-text-fixed { font-size: 10px; font-weight: bold; color: #64748b; letter-spacing: 0.05em; }
+</style>
+
+
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
@@ -769,6 +797,34 @@
                 </div>
             </div>
         </div>
+       <section class="py-10 bg-slate-50 border-t border-gray-200">
+    <div class="container mx-auto px-6 text-center">
+        <div class="inline-block bg-white p-6 rounded-2xl shadow-xl border border-slate-200 relative overflow-hidden">
+            
+            <div class="flex items-center justify-center mb-4">
+                <span class="status-pulse-fixed"></span>
+                <span class="status-text-fixed">Live Global Monitoring: ACTIVE</span>
+            </div>
+
+            <h4 class="text-slate-500 uppercase tracking-widest text-[10px] font-bold mb-4">
+                Engineering Footprint & Client Reach
+            </h4>
+            
+            <div class="flex items-center justify-center space-x-6">
+                <div id="visitor-count" class="text-4xl md:text-5xl font-bold text-orange-500" 
+                     style="font-family: 'Bookman Old Style', serif;">
+                    2,700
+                </div>
+                
+                <div class="text-left border-l-2 border-orange-500 pl-4">
+                    <p class="text-slate-700 font-bold leading-tight">TOTAL INDUSTRIAL<br>ENGAGEMENTS</p>
+                    <p class="text-orange-600 text-[10px] font-black uppercase mt-1">5+ Years Excellence</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
     </section>
 
     <footer class="bg-gray-900 text-gray-400 py-12">
@@ -794,39 +850,40 @@
             <p class="text-sm">&copy; 2026 NEEDS | New Era Engineering and Development and Solutions. All rights reserved. | Built for Industrial Excellence.</p>
         </div>
     </footer>
-<script>
-    // This tells the script to WAIT until the entire website is drawn on the screen
-    document.addEventListener("DOMContentLoaded", function() {
+    
+    <script>
+(function() {
+    async function updateLiveCounter() {
+        const display = document.getElementById('visitor-count');
+        const offset = 2700;
         
-        const baseLegacyInquiries = 2560;
-        const namespace = 'needsengineering'; 
-        const key = 'homepage';
-        const countDisplay = document.getElementById('visitor-count');
+        // Using the v2 URL you provided through a CORS proxy
+        const targetUrl = "https://api.counterapi.dev/v2/hellogneedss-team-3892/needsplcom/up";
+        const proxyUrl = "https://api.allorigins.win/get?url=" + encodeURIComponent(targetUrl);
 
-        // Show a loading text so we know the script is awake
-        if (countDisplay) {
-            countDisplay.innerText = "Loading...";
+        try {
+            const response = await fetch(proxyUrl);
+            if (!response.ok) throw new Error('Network error');
+            
+            const wrapper = await response.json();
+            const data = JSON.parse(wrapper.contents);
+            
+            // Checking if 'count' or 'value' exists in the v2 response
+            const apiValue = data.count || data.value || 0;
+            
+            const total = offset + apiValue;
+            display.innerText = total.toLocaleString();
+            
+        } catch (err) {
+            console.error("Counter failed:", err);
+            // Stays at 2,700 if the connection fails
+            display.innerText = offset.toLocaleString();
         }
+    }
 
-        // Try to fetch the live data
-        fetch(`https://api.counterapi.dev/v2/hellogneedss-team-3892/needsplcom/up`)
-            .then(response => {
-                if (!response.ok) throw new Error("API connection failed");
-                return response.json();
-            })
-            .then(data => {
-                // If successful, do the math and display the live number
-                const totalValue = data.count + baseLegacyInquiries;
-                countDisplay.innerText = totalValue.toLocaleString();
-            })
-            .catch(error => {
-                // If blocked by the browser (because it's a local file) or internet drops, show the base number safely.
-                console.error('Counter API Notice:', error);
-                if (countDisplay) {
-                    countDisplay.innerText = baseLegacyInquiries.toLocaleString();
-                }
-            });
-    });
+    // Run immediately and on load
+    updateLiveCounter();
+})();
 </script>
 </body>
 </html>
