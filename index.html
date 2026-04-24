@@ -825,37 +825,39 @@
           </div>
     </footer>
 <script>
-async function updateCounter() {
-    const counterDisplay = document.getElementById('visitor-count');
-    const startPoint = 2700;
+function updateNEEDSCount() {
+    const display = document.getElementById('visitor-count');
+    const offset = 2700; // Your starting number
 
-    // Use a different, more reliable proxy
+    // We use AllOrigins but in 'JSONP' mode which is a different 'handshake'
+    const script = document.createElement('script');
     const apiUrl = 'https://api.counterapi.dev/v2/hellogneedss-team-3892/needsplcom/up';
-    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}&callback=?`;
+    
+    script.src = `https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}&callback=handleCounterResponse`;
+    
+    document.body.appendChild(script);
+}
+
+// This function processes the data once it arrives
+function handleCounterResponse(data) {
+    const display = document.getElementById('visitor-count');
+    const offset = 2700;
 
     try {
-        // We use a timestamp to prevent the browser from showing a "cached" old number
-        const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}&cache_bypass=${Date.now()}`);
-        
-        if (!response.ok) throw new Error('Proxy unreachable');
-        
-        const wrapper = await response.json();
-        const data = JSON.parse(wrapper.contents);
-
-        if (data && data.value !== undefined) {
-            const total = startPoint + data.value;
-            counterDisplay.innerText = total.toLocaleString();
-            console.log("NEEDS Counter Updated:", total);
+        const contents = JSON.parse(data.contents);
+        if (contents && contents.value !== undefined) {
+            const total = offset + contents.value;
+            display.innerText = total.toLocaleString();
+            console.log("Counter updated to:", total);
         }
-    } catch (error) {
-        console.error("Counter failed to load, showing baseline:", error);
-        // If everything fails, it stays at 2,700
-        counterDisplay.innerText = startPoint.toLocaleString();
+    } catch (e) {
+        console.error("Data error:", e);
+        // Stays at 2,700 if there's a format error
     }
 }
 
-// Run the function when the page is fully loaded
-window.addEventListener('DOMContentLoaded', updateCounter);
+// Start the process when page finishes loading
+window.onload = updateNEEDSCount;
 </script>
 </body>
 </html>
