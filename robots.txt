@@ -1,0 +1,12 @@
+# Robots.txt for NEEDS | New Era Engineering and Development and Solutions
+# Live at: https://www.needspl.com
+
+User-agent: *
+Allow: /
+
+# Disallow access to any internal scripts or test folders (Uncomment and edit if you create them)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Point search engines directly to your sitemap for faster indexing
+Sitemap: https://www.needspl.com/sitemap.xml
