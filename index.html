@@ -800,7 +800,7 @@
     document.addEventListener("DOMContentLoaded", function() {
         
         const baseLegacyInquiries = 2500;
-        const namespace = 'needsengineering'; 
+        const namespace = 'hellogneeds'; 
         const key = 'homepage';
         const countDisplay = document.getElementById('visitor-count');
 
@@ -811,7 +811,7 @@
 
       // Initialize the counter with your namespace
              const counter = new Counter({
-                 namespace: 'needsengineering' 
+                 namespace: 'hellogneeds' 
            });
 
          // Increment the counter
@@ -822,7 +822,7 @@
               }).catch((err) => {
          console.error('Counter error:', err);
  });
-       fetch('https://api.counterapi.dev/v1/needsengineering/homepage/up')
+       fetch('https://api.counterapi.dev/v1/hellogneeds/homepage/up')
   .then(response => response.json())
   .then(data => {
       console.log("Success:", data.value);
