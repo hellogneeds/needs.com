@@ -822,40 +822,6 @@
     </div>
 </section> 
     </footer>
-<script>
-(function() {
-    async function getNeedsCount() {
-        const display = document.getElementById('visitor-count');
-        const offset = 2700;
-        
-        // This proxy is specifically designed to bypass CORS errors
-        const proxy = "https://corsproxy.io/?";
-        const target = "https://api.counterapi.dev/v2/hellogneedss-team-3892/needsplcom/up";
 
-        try {
-            const response = await fetch(proxy + encodeURIComponent(target));
-            if (!response.ok) throw new Error('Proxy failed');
-            
-            const data = await response.json();
-            
-            if (data && data.value !== undefined) {
-                const total = offset + data.value;
-                display.innerText = total.toLocaleString();
-            }
-        } catch (err) {
-            console.warn("Counter API Error, showing default:", err);
-            // If the API fails, it remains at 2,700
-            display.innerText = offset.toLocaleString();
-        }
-    }
-
-    // Run when the page is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', getNeedsCount);
-    } else {
-        getNeedsCount();
-    }
-})();
-</script>
 </body>
 </html>
