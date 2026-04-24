@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
+    
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -839,8 +839,8 @@
     // This tells the script to WAIT until the entire website is drawn on the screen
     document.addEventListener("DOMContentLoaded", function() {
         
-        const baseLegacyInquiries = 2500;
-        const namespace = 'hellogneeds'; 
+        const baseLegacyInquiries = 2700;
+        const namespace = 'www.needspl.com'; 
         const key = 'homepage';
         const countDisplay = document.getElementById('visitor-count');
 
@@ -898,7 +898,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const startPoint = 2700; // Your custom starting number
 
     // Call the API
-    fetch('https://api.counterapi.dev/v1/needsengineering/homepage/up')
+    fetch('https://api.counterapi.dev/v2/hellogneedss-team-3892/needsplcom/up')
     .then(response => {
         if (!response.ok) throw new Error('API/CORS Block');
         return response.json();
