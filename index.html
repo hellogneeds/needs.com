@@ -68,18 +68,6 @@
         opacity: 0.7;
     }
 
-    @keyframes pulse {
-        0% { transform: scale(1); opacity: 0.7; }
-        100% { transform: scale(3); opacity: 0; }
-    }
-
-    .status-text {
-        font-size: 10px;
-        font-weight: bold;
-        color: #64748b; /* Slate-500 */
-        letter-spacing: 0.05em;
-    }
-</style>
     
     <style>
 
@@ -835,64 +823,6 @@
              <span id="v-count">2700</span>
           </div>
     </footer>
-<script>
-    // This tells the script to WAIT until the entire website is drawn on the screen
-    document.addEventListener("DOMContentLoaded", function() {
-        
-        const baseLegacyInquiries = 2700;
-        const namespace = 'needsplcom'; 
-        const key = 'homepage';
-        const countDisplay = document.getElementById('visitor-count');
 
-        // Show a loading text so we know the script is awake
-        if (countDisplay) {
-            countDisplay.innerText = "Loading...";
-        }
-
-      // Initialize the counter with your namespace
-             const counter = new Counter({
-                 namespace: 'needsplcom' 
-           });
-
-         // Increment the counter
-         counter.up('homepage').then((res) => {
-             console.log('Views:', res.value);
-      // Update your HTML element here, e.g.:
-             // document.getElementById('counter').innerText = res.value;
-              }).catch((err) => {
-         console.error('Counter error:', err);
- });
-       fetch('https://api.counterapi.dev/v2/hellogneedss-team-3892/needsplcom/up')
-  .then(response => response.json())
-  .then(data => {
-      console.log("Success:", data.value);
-  })
-  .catch(error => {
-      console.error("CORS still blocking:", error);
-  });
-    <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const counterDisplay = document.getElementById('visitor-count');
-    const startPoint = 2700; // Your custom starting number
-
-    // Call the API
-    fetch('https://api.counterapi.dev/v2/hellogneedss-team-3892/needsplcom/up')
-    .then(response => {
-        if (!response.ok) throw new Error('API/CORS Block');
-        return response.json();
-    })
-    .then(data => {
-        // Calculate: 2700 + current API hits
-        const total = startPoint + data.value;
-        // Update display with comma formatting (e.g., 2,705)
-        counterDisplay.innerText = total.toLocaleString();
-    })
-    .catch(error => {
-        console.error('Counter Error:', error);
-        // If API fails, keep showing 2,700 so the UI looks perfect
-        counterDisplay.innerText = startPoint.toLocaleString();
-    });
-});
-</script>
 </body>
 </html>
