@@ -822,25 +822,13 @@
               }).catch((err) => {
          console.error('Counter error:', err);
  });
-        // Try to fetch the live data
-        fetch(`https://api.counterapi.dev/v1/${namespace}/${key}/up`)
-            .then(response => {
-                if (!response.ok) throw new Error("API connection failed");
-                return response.json();
-            })
-            .then(data => {
-                // If successful, do the math and display the live number
-                const totalValue = data.count + baseLegacyInquiries;
-                countDisplay.innerText = totalValue.toLocaleString();
-            })
-            .catch(error => {
-                // If blocked by the browser (because it's a local file) or internet drops, show the base number safely.
-                console.error('Counter API Notice:', error);
-                if (countDisplay) {
-                    countDisplay.innerText = baseLegacyInquiries.toLocaleString();
-                }
-            });
-    });
-</script>
+       fetch('https://api.counterapi.dev/v1/needsengineering/homepage/up')
+  .then(response => response.json())
+  .then(data => {
+      console.log("Success:", data.value);
+  })
+  .catch(error => {
+      console.error("CORS still blocking:", error);
+  });
 </body>
 </html>
