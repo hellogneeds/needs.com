@@ -243,33 +243,7 @@
             letter-spacing: 0.1em;
         }
     </style>
-<section class="py-10 bg-slate-50 border-t border-gray-200">
-    <div class="container mx-auto px-6 text-center">
-        <div class="inline-block bg-white p-6 rounded-2xl shadow-xl border border-slate-200 relative overflow-hidden">
-            
-            <div class="flex items-center justify-center mb-4">
-                <span class="status-pulse-fixed"></span>
-                <span class="status-text-fixed">Live Global Monitoring: ACTIVE</span>
-            </div>
 
-            <h4 class="text-slate-500 uppercase tracking-widest text-[10px] font-bold mb-4">
-                Engineering Footprint & Client Reach
-            </h4>
-            
-            <div class="flex items-center justify-center space-x-6">
-                <div id="visitor-count" class="text-4xl md:text-5xl font-bold text-orange-500" 
-                     style="font-family: 'Bookman Old Style', serif;">
-                    2,700
-                </div>
-                
-                <div class="text-left border-l-2 border-orange-500 pl-4">
-                    <p class="text-slate-700 font-bold leading-tight">TOTAL INDUSTRIAL<br>ENGAGEMENTS</p>
-                    <p class="text-orange-600 text-[10px] font-black uppercase mt-1">5+ Years Excellence</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <style>
     /* Styling the Pulse Animation */
@@ -298,41 +272,7 @@
     .status-text-fixed { font-size: 10px; font-weight: bold; color: #64748b; letter-spacing: 0.05em; }
 </style>
 
-<script>
-(function() {
-    async function getNeedsCount() {
-        const display = document.getElementById('visitor-count');
-        const offset = 2700;
-        
-        // This proxy is specifically designed to bypass CORS errors
-        const proxy = "https://corsproxy.io/?";
-        const target = "https://api.counterapi.dev/v2/hellogneedss-team-3892/needsplcom/up";
 
-        try {
-            const response = await fetch(proxy + encodeURIComponent(target));
-            if (!response.ok) throw new Error('Proxy failed');
-            
-            const data = await response.json();
-            
-            if (data && data.value !== undefined) {
-                const total = offset + data.value;
-                display.innerText = total.toLocaleString();
-            }
-        } catch (err) {
-            console.warn("Counter API Error, showing default:", err);
-            // If the API fails, it remains at 2,700
-            display.innerText = offset.toLocaleString();
-        }
-    }
-
-    // Run when the page is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', getNeedsCount);
-    } else {
-        getNeedsCount();
-    }
-})();
-</script>
     
 </head>
 <body class="bg-slate-50 text-slate-900">
@@ -854,42 +794,68 @@
             </div>
             <p class="text-sm">&copy; 2026 NEEDS | New Era Engineering and Development and Solutions. All rights reserved. | Built for Industrial Excellence.</p>
         </div>
+           <section class="py-10 bg-slate-50 border-t border-gray-200">
+    <div class="container mx-auto px-6 text-center">
+        <div class="inline-block bg-white p-6 rounded-2xl shadow-xl border border-slate-200 relative overflow-hidden">
             
+            <div class="flex items-center justify-center mb-4">
+                <span class="status-pulse-fixed"></span>
+                <span class="status-text-fixed">Live Global Monitoring: ACTIVE</span>
+            </div>
+
+            <h4 class="text-slate-500 uppercase tracking-widest text-[10px] font-bold mb-4">
+                Engineering Footprint & Client Reach
+            </h4>
+            
+            <div class="flex items-center justify-center space-x-6">
+                <div id="visitor-count" class="text-4xl md:text-5xl font-bold text-orange-500" 
+                     style="font-family: 'Bookman Old Style', serif;">
+                    2,700
+                </div>
+                
+                <div class="text-left border-l-2 border-orange-500 pl-4">
+                    <p class="text-slate-700 font-bold leading-tight">TOTAL INDUSTRIAL<br>ENGAGEMENTS</p>
+                    <p class="text-orange-600 text-[10px] font-black uppercase mt-1">5+ Years Excellence</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 
     </footer>
 <script>
-function updateNEEDSCount() {
-    const display = document.getElementById('visitor-count');
-    const offset = 2700; // Your starting number
+(function() {
+    async function getNeedsCount() {
+        const display = document.getElementById('visitor-count');
+        const offset = 2700;
+        
+        // This proxy is specifically designed to bypass CORS errors
+        const proxy = "https://corsproxy.io/?";
+        const target = "https://api.counterapi.dev/v2/hellogneedss-team-3892/needsplcom/up";
 
-    // We use AllOrigins but in 'JSONP' mode which is a different 'handshake'
-    const script = document.createElement('script');
-    const apiUrl = 'https://api.counterapi.dev/v2/hellogneedss-team-3892/needsplcom/up';
-    
-    script.src = `https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}&callback=handleCounterResponse`;
-    
-    document.body.appendChild(script);
-}
-
-// This function processes the data once it arrives
-function handleCounterResponse(data) {
-    const display = document.getElementById('visitor-count');
-    const offset = 2700;
-
-    try {
-        const contents = JSON.parse(data.contents);
-        if (contents && contents.value !== undefined) {
-            const total = offset + contents.value;
-            display.innerText = total.toLocaleString();
-            console.log("Counter updated to:", total);
+        try {
+            const response = await fetch(proxy + encodeURIComponent(target));
+            if (!response.ok) throw new Error('Proxy failed');
+            
+            const data = await response.json();
+            
+            if (data && data.value !== undefined) {
+                const total = offset + data.value;
+                display.innerText = total.toLocaleString();
+            }
+        } catch (err) {
+            console.warn("Counter API Error, showing default:", err);
+            // If the API fails, it remains at 2,700
+            display.innerText = offset.toLocaleString();
         }
-    } catch (e) {
-        console.error("Data error:", e);
-        // Stays at 2,700 if there's a format error
     }
-}
 
-// Start the process when page finishes loading
-window.onload = updateNEEDSCount;
+    // Run when the page is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', getNeedsCount);
+    } else {
+        getNeedsCount();
+    }
+})();
 </script>
 </body>
 </html>
