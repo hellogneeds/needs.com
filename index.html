@@ -870,29 +870,6 @@
   .catch(error => {
       console.error("CORS still blocking:", error);
   });
-<script>
-
- document.addEventListener("DOMContentLoaded", function() {
-    const counterElement = document.getElementById('v-count');
-    const startingOffset = 2700;
-
-    // Fetch the count from CounterAPI
-    fetch('https://api.counterapi.dev/v2/hellogneedss-team-3892/needsplcom/up')
-    .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
-        return response.json();
-    })
-    .then(data => {
-        // This updates the HTML with the actual number
-        counterElement.innerText = data.value.toLocaleString(); 
-    })
-    .catch(error => {
-        console.error('Counter error:', error);
-        // Fallback text if the API fails
-        counterElement.innerText = "Check back soon";
-    });
-});
-</script>
     <script>
 document.addEventListener("DOMContentLoaded", function() {
     const counterDisplay = document.getElementById('visitor-count');
