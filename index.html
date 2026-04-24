@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -808,6 +809,19 @@
             countDisplay.innerText = "Loading...";
         }
 
+      // Initialize the counter with your namespace
+             const counter = new Counter({
+                 namespace: 'needsengineering' 
+           });
+
+         // Increment the counter
+         counter.up('homepage').then((res) => {
+             console.log('Views:', res.value);
+      // Update your HTML element here, e.g.:
+             // document.getElementById('counter').innerText = res.value;
+              }).catch((err) => {
+         console.error('Counter error:', err);
+ });
         // Try to fetch the live data
         fetch(`https://api.counterapi.dev/v1/${namespace}/${key}/up`)
             .then(response => {
