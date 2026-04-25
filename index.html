@@ -313,6 +313,24 @@
                 
                 <a href="#about" class="hover:text-orange-500">About Us</a>
                 <a href="#machinery" class="hover:text-orange-500">Primary Machinery</a>
+                <div class="container mx-auto px-6 py-10 flex justify-center">
+    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-lg flex items-center space-x-5 max-w-md transition-all hover:border-orange-400 hover:shadow-xl">
+        
+        <div class="p-4 bg-orange-100 text-orange-600 rounded-2xl text-4xl flex items-center justify-center">
+            <i class="fas fa-handshake"></i>
+        </div>
+        
+        <div>
+            <div id="visitor-count" class="text-5xl font-bold text-slate-900 leading-none mb-1" style="font-family: 'Bookman Old Style', serif;">
+                0
+            </div>
+            
+            <div class="text-sm font-medium text-slate-600 uppercase tracking-widest leading-tight">
+                Industrial <br> Inquiries Served
+            </div>
+        </div>
+    </div>
+</div>
                 <a href="#contact" class="bg-orange-600 text-white px-5 py-2 rounded hover:bg-orange-700 transition shadow">Contact</a>
             </div>
         </div>
@@ -856,6 +874,50 @@
     // Run immediately and on load
     updateLiveCounter();
 })();
+</script>
+    <script>
+    // Make sure the script runs AFTER the HTML is fully drawn
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        const counterElement = document.getElementById('visitor-count');
+        
+        // --- YOU ONLY NEED TO EDIT THESE TWO NUMBERS ---
+        const targetNumber = 2500;   // The final number you want displayed
+        const duration = 2000;       // How long the animation takes in milliseconds (2000 = 2 seconds)
+        // -----------------------------------------------
+        
+        const startNumber = 0;
+        const startTime = Date.now();
+
+        // The animation loop function
+        function updateCounter() {
+            const currentTime = Date.now();
+            const elapsed = currentTime - startTime;
+            
+            // Calculate progress (0.0 to 1.0)
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Apply easing function for professional feel (starts fast, slows down smoothly)
+            // Easing formula: easeOutExpo
+            const easedProgress = (progress === 1) ? 1 : 1 - Math.pow(2, -10 * progress);
+            
+            // Calculate the current animated number
+            const currentCount = Math.floor(startNumber + easedProgress * (targetNumber - startNumber));
+            
+            // Inject the number and format with commas (e.g., 2,500)
+            counterElement.innerText = currentCount.toLocaleString();
+
+            // Continue animation if we haven't reached the target time
+            if (progress < 1) {
+                requestAnimationFrame(updateCounter);
+            }
+        }
+
+        // Safety check to ensure the element exists before starting
+        if (counterElement) {
+            updateCounter();
+        }
+    });
 </script>
 </body>
 </html>
